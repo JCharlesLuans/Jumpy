@@ -133,7 +133,7 @@ public class PlayerController implements KeyListener, ControllerListener{
 
     @Override
     public void controllerButtonPressed(int i, int j) {
-        if (i == 3) {
+        if (j == 1) {
             joueur.saut();
         }
     }

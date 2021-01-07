@@ -53,7 +53,7 @@ public class Game extends BasicGame {
 
         map.init();
         joueur.init(gameContainer);
-        camera.init(joueur);
+        camera.init(joueur, gameContainer);
 
         PlayerController controller = new PlayerController(joueur);
         container.getInput().addKeyListener(controller);

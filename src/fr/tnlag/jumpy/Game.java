@@ -66,7 +66,7 @@ public class Game extends BasicGame {
     public void update(GameContainer gameContainer, int delta) throws SlickException {
         joueur.update(delta);
         joueur.setAuSol(map.isCollision(joueur.getX(), joueur.getY()));
-        camera.update(delta);
+        camera.update(gameContainer, delta);
 
     }
 

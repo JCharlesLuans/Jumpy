@@ -44,9 +44,16 @@ public class Camera {
      * Mise a jour de la camera
      * Fréquence de MaJ
      */
-    public void update(int delta) {
+    public void update(GameContainer container, int delta) {
+
+        /* Mise a jours du centre de la camera */
         x = joueur.getX();
         y = joueur.getY();
+
+        int middle = container.getWidth() / 4;
+
+        if (joueur.getX() > this.x + middle) this.x = joueur.getX() - middle;
+        if (joueur.getX() < this.x - middle) this.x = joueur.getX() + middle;
 
         // DEBUG
         // System.out.println("X = " + x + "\nY = " + y );

@@ -49,8 +49,7 @@ public class Joueur {
 
     private HitBox hitBoxHaut;
     private HitBox hitBoxBas;
-
-<<<<<<< HEAD:src/fr/tnlag/jumpy/gameState/entites/Joueur.java
+    
     /* Son du joueur */
     private Music sonSaut;
     private Music sonPiece;

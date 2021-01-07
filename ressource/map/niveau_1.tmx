@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="decor.tsx"/>
  <tileset firstgid="13" source="logique.tsx"/>
- <layer id="1" name="ciel" width="32" height="16">
+ <layer id="1" name="ciel" width="64" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNmYGBgHgDMCMRMVFRHKmYFYjYqqqPUnZTqJ9adtNI/iomPX1qlaWLjl9K4Hgj34/LLcMZDOZyHsttHEgYAfNqyRQAIAAA=
+   H4sIAAAAAAAACu2UQQoAIAgELan/P7mgD5hWruFhjuKgyzIRsQNlUp12I3i2SX/oop2Ver74p+Zm0lmrv8UNgej+yQK1VyVeJ9xRcyzxQnW/8afIRPnTD3hmDSHnO1k73bGWnHvcDqljsyOSCAxScPe1ABAAAA==
   </data>
  </layer>
- <layer id="5" name="sol3" width="32" height="16">
+ <layer id="5" name="sol3" width="64" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGAWjYBSMZMAJxFxEYm4y9KLrQQc8QMxOJOYgQy+6nlH7qWc/DIzaT779AwkAvRRADAAIAAA=
+   H4sIAAAAAAAACu2POQoAIAwE03n+/71ai8VCjAjOwJZ7mQEAAMDrlKm6UQvIVHoUr2fbSp9KG+WATKVH8Xq2qVv5fz6T/3oP/+/8j+D3/z8zABKHhxIAEAAA
   </data>
  </layer>
- <layer id="2" name="sol2" width="32" height="16">
+ <layer id="2" name="sol2" width="64" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGAWjYBSMglEwCogHnEDMhYS56Ww/DxCzI2GOIWo/KNx4KcAMFOjlA2IAMQGCrgAIAAA=
+   H4sIAAAAAAAACu3SSwoAIAgAUXf9u/9xs12rCCSDmAezFBQUAQAAAIC9pOWl8nYdd1ULS/HtOu5+uX/+bTMkhtl++7gDA7sdNZUAEAAA
   </data>
  </layer>
- <layer id="3" name="sol" width="32" height="16">
+ <layer id="3" name="sol" width="64" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGAWjYBSMglEwCkYBvQEnEHMNEOYGYgDvQ6lWAAgAAA==
+   H4sIAAAAAAAACu3SSwoAIAhAwXZ973/e7AiBBMEMvLUilgIAAMBrPRoJzdeLJ1lRTahdzMy6+Y+dP9mHc6dmABAAAA==
   </data>
  </layer>
- <layer id="4" name="logic" width="32" height="16">
+ <layer id="4" name="logic" width="64" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGAWjYBSMZMBLIiZH7ygYXmA0jqkDSM171MYAZ4JytQAIAAA=
+   H4sIAAAAAAAACu3U0QkAIAgFQBdo/3XboCgNEu7gfaogaAQA8LuxyIueuzk3NUBvbrze6R/2b/Mqd94xE+GcbwMAEAAA
   </data>
  </layer>
 </map>

@@ -5,11 +5,11 @@
 
 package fr.tnlag.jumpy;
 
+import fr.tnlag.jumpy.entites.Camera;
 import fr.tnlag.jumpy.entites.Joueur;
 import fr.tnlag.jumpy.entites.Map;
 import fr.tnlag.jumpy.physique.PlayerController;
 import org.newdawn.slick.*;
-import org.newdawn.slick.tiled.TiledMap;
 
 /**
  * Classe de lancement et de chargement du jeu.
@@ -25,7 +25,11 @@ public class Game extends BasicGame {
     // Map afficher
     private Map map = new Map();
 
+    // Joueur
     Joueur joueur = new Joueur();
+
+    // Camera
+    Camera camera = new Camera();
 
     /**
      * Créer un nouveau jeu
@@ -49,6 +53,7 @@ public class Game extends BasicGame {
 
         map.init();
         joueur.init(gameContainer);
+        camera.init(joueur, gameContainer);
 
         PlayerController controller = new PlayerController(joueur);
         container.getInput().addKeyListener(controller);
@@ -61,11 +66,13 @@ public class Game extends BasicGame {
     public void update(GameContainer gameContainer, int delta) throws SlickException {
         joueur.update(delta);
         joueur.setAuSol(map.isCollision(joueur.getX(), joueur.getY()));
+        camera.update(gameContainer, delta);
 
     }
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
+        camera.render(gameContainer, graphics);
         map.render();
         joueur.render(graphics);
     }

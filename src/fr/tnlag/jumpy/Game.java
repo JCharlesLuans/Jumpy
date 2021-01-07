@@ -72,8 +72,8 @@ public class Game extends BasicGame {
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
+        camera.render(gameContainer, graphics);
         map.render();
         joueur.render(graphics);
-        camera.render(gameContainer, graphics);
     }
 }

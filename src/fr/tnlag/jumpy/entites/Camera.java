@@ -49,7 +49,7 @@ public class Camera {
         y = joueur.getY();
 
         // DEBUG
-        System.out.println("X = " + x + "\nY = " + y );
+        // System.out.println("X = " + x + "\nY = " + y );
     }
 
     /**
@@ -58,7 +58,7 @@ public class Camera {
      * @param gameContainer
      */
     public void render(GameContainer gameContainer , Graphics graphics) throws SlickException {
-        graphics.translate(gameContainer.getWidth() / 2f - (int) (this.x),
-                              gameContainer.getHeight());
+        graphics.translate(gameContainer.getWidth() / 2f - x, // place le x de la camera au centre
+                            gameContainer.getHeight() /2f );    // place le y de la camera au centre
     }
 }

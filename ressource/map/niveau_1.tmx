@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+ <tileset firstgid="1" source="decor.tsx"/>
+ <tileset firstgid="13" source="logique.tsx"/>
+ <layer id="1" name="ciel" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNmYGBgHgDMCMRMVFRHKmYFYjYqqqPUnZTqJ9adtNI/iomPX1qlaWLjl9K4Hgj34/LLcMZDOZyHsttHEgYAfNqyRQAIAAA=
+  </data>
+ </layer>
+ <layer id="5" name="sol3" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjYBSMZMAJxFxEYm4y9KLrQQc8QMxOJOYgQy+6nlH7qWc/DIzaT779AwkAvRRADAAIAAA=
+  </data>
+ </layer>
+ <layer id="2" name="sol2" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjYBSMglEwCogHnEDMhYS56Ww/DxCzI2GOIWo/KNx4KcAMFOjlA2IAMQGCrgAIAAA=
+  </data>
+ </layer>
+ <layer id="3" name="sol" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjYBSMglEwCkYBvQEnEHMNEOYGYgDvQ6lWAAgAAA==
+  </data>
+ </layer>
+ <layer id="4" name="logic" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjYBSMZMBLIiZH7ygYXmA0jqkDSM171MYAZ4JytQAIAAA=
+  </data>
+ </layer>
+</map>

@@ -20,6 +20,8 @@ public class Joueur {
 
     public final float DISTANCE_SAUT = 128f;
 
+    private int score;
+
     private float positionMax;
     private boolean jumping;  // Indicateur de saut
 
@@ -50,9 +52,24 @@ public class Joueur {
         /* Indicateur de mouvement */
         mooving = false;
 
+        /* Initialisation du tableau des animation */
         for (int i = 0; i < 4; i++) {
             listeAnimation[i] = new Animation();
         }
+
+        /* Initialisation du score */
+        score = 0;
+    }
+
+
+    /**
+     * Applique la gravité au personnage
+     */
+    private void gravity(int delta) {
+        if (!this.auSol) {
+            this.y += .2f * delta;
+        }
+
     }
 
     /**
@@ -84,6 +101,74 @@ public class Joueur {
     }
 
     /**
+     * Fait bouger le joueur
+     */
+    private void mouvement(int delta) {
+
+        float futurX = x;   // X aprés mouvement du joueur
+
+        /* Déplacement vers la droite ou vers la gauche */
+        if (this.mooving) {
+            if (direction == DROITE) {
+                // DEBUG
+                // System.out.println("Vers la droite");
+                futurX += .2f * delta;
+            } else {
+                // DEBUG
+                // System.out.println("Vers la gauche");
+                futurX -= .2f * delta;
+            }
+        }
+
+        // Limite de la map (0 : premiere coordonnée, si inf a 0, out of range car personnage hors de la map)
+        if (futurX > 0) {
+            this.x = futurX;
+        }
+    }
+
+    /**
+     * Affichage du joueur
+     * @param g graphic
+     * @throws SlickException
+     */
+    public void render(Graphics g) throws SlickException {
+
+        int mouvement = 0; // Numéro du mouvement a effectuer dans la liste d'animation
+
+        mouvement = direction == DROITE ? 0 : 1;
+        mouvement = auSol ? mouvement : mouvement + 2;
+
+        // DEBUG
+        //System.out.println("Direction : " + direction);
+        //System.out.println("Mouvement : " + mouvement);
+
+        g.drawAnimation(listeAnimation[mouvement],  x, y);
+    }
+
+
+
+    /**
+     * Fait sauter le joueur
+     */
+    public void saut() {
+        if (auSol) {
+            this.jumping = true;
+            positionMax = y - DISTANCE_SAUT;
+
+            try {
+                Music saut = new Music("/ressource/son/bond.wav");
+                saut.play();
+            } catch (Exception err) {
+                System.out.println(err);
+            }
+        }
+    }
+
+    /**
+     * Arret du joueur lorsque toute les touches sont relâchées
+     */
+
+    /**
      * Mise à jours du personnage
      * @param delta fréquence de la mise à jour
      */
@@ -112,65 +197,9 @@ public class Joueur {
         mouvement(delta);
     }
 
-    /**
-     * Affichage du joueur
-     * @param container conteneur du jeu dans le quel le joueur va évoluer
-     * @param g graphic
-     * @throws SlickException
-     */
-    public void render(Graphics g) throws SlickException {
 
-        int mouvement = 0; // Numéro du mouvement a effectuer dans la liste d'animation
+    /* ----------------------------------------------------------------------------------------------------- */
 
-        mouvement = direction == DROITE ? 0 : 1;
-        mouvement = auSol ? mouvement : mouvement + 2;
-
-        // DEBUG
-        //System.out.println("Direction : " + direction);
-        //System.out.println("Mouvement : " + mouvement);
-
-        g.drawAnimation(listeAnimation[mouvement],  x, y);
-    }
-
-    /**
-     * Applique la gravité au personnage
-     */
-    private void gravity(int delta) {
-        if (!this.auSol) {
-            this.y += .2f * delta;
-        }
-
-    }
-
-    /**
-     * Fait bouger le joueur
-     */
-    private void mouvement(int delta) {
-
-        float futurX = x;   // X aprés mouvement du joueur
-
-        /* Déplacement vers la droite ou vers la gauche */
-        if (this.mooving) {
-            if (direction == DROITE) {
-                // DEBUG
-                // System.out.println("Vers la droite");
-                futurX += .2f * delta;
-            } else {
-                // DEBUG
-                // System.out.println("Vers la gauche");
-                futurX -= .2f * delta;
-            }
-        }
-
-        // Limite de la map (0 : premiere coordonnée, si inf a 0, out of range car personnage hors de la map)
-        if (futurX > 0) {
-            this.x = futurX;
-        }
-    }
-
-    /**
-     * Arret du joueur lorsque toute les touches sont relâchées
-     */
 
     /**
      * @param auSol
@@ -185,15 +214,7 @@ public class Joueur {
     public boolean getAuSol() {
         return auSol;
     }
-    /**
-     * Fait sauter le joueur
-     */
-    public void saut() {
-        if (auSol) {
-            this.jumping = true;
-            positionMax = y - DISTANCE_SAUT;
-        }
-    }
+
 
     /**
      * @return position en x
@@ -219,5 +240,19 @@ public class Joueur {
 
     public void setMouvig(boolean b) {
         this.mooving = b;
+    }
+
+    /**
+     * @param newScore nouvelle valeur de score
+     */
+    public void setScore(int newScore) {
+        score = newScore;
+    }
+
+    /**
+     * @return score
+     */
+    public int getScore() {
+        return score;
     }
 }

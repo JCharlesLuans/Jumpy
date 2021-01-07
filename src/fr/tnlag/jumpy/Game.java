@@ -5,6 +5,7 @@
 
 package fr.tnlag.jumpy;
 
+import fr.tnlag.jumpy.HUD.Interface;
 import fr.tnlag.jumpy.entites.Camera;
 import fr.tnlag.jumpy.entites.Joueur;
 import fr.tnlag.jumpy.entites.Map;
@@ -31,6 +32,9 @@ public class Game extends BasicGame {
     // Camera
     Camera camera = new Camera();
 
+    // Affichage
+    Interface affichage = new Interface();
+
     /**
      * Créer un nouveau jeu
      */
@@ -49,11 +53,14 @@ public class Game extends BasicGame {
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
 
+
         this.container = gameContainer;
+        container.setShowFPS(false);
 
         map.init();
         joueur.init(gameContainer);
         camera.init(joueur, gameContainer);
+        affichage.init(joueur);
 
         PlayerController controller = new PlayerController(joueur);
         container.getInput().addKeyListener(controller);
@@ -75,5 +82,6 @@ public class Game extends BasicGame {
         camera.render(gameContainer, graphics);
         map.render();
         joueur.render(graphics);
+        affichage.render(graphics);
     }
 }

@@ -59,6 +59,6 @@ public class Camera {
      */
     public void render(GameContainer gameContainer , Graphics graphics) throws SlickException {
         graphics.translate(gameContainer.getWidth() / 2f - x, // place le x de la camera au centre
-                            gameContainer.getHeight() /2f );    // place le y de la camera au centre
+                            0 );    // place le y de la camera au centre
     }
 }

@@ -19,7 +19,7 @@ import org.newdawn.slick.SpriteSheet;
  */
 public class Piece {
 
-    private boolean estActive;
+    private boolean active;
 
     private float x,
                   y;
@@ -35,6 +35,8 @@ public class Piece {
         this.x = newX;
         this.y = newY;
 
+        active = true;
+
         SpriteSheet feuilleSprite = new SpriteSheet("ressource/sprite/piece.png", 32, 32);
         animation = new Animation();
         animation.addFrame(feuilleSprite.getSprite(0, 0), 150);
@@ -44,8 +46,35 @@ public class Piece {
     }
 
     public void render(Graphics g) {
-        System.out.println(x);
-        System.out.println(y);
-        g.drawAnimation(animation, x, y);
+        if (active)
+            g.drawAnimation(animation, x, y);
+    }
+
+    /**
+     * @return la position du point gauche sur l'axe des absisses
+     */
+    public float getX() {
+        return x;
+    }
+
+    /**
+     * @return la position sur l'axe des ordonnées
+     */
+    public float getY() {
+        return y;
+    }
+
+    /**
+     * Active ou non la piece
+     */
+    public void setActive(boolean activer) {
+        this.active = activer;
+    }
+
+    /**
+     * @return  estActive
+     */
+    public boolean isActive() {
+        return this.active;
     }
 }

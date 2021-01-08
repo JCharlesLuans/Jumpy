@@ -224,12 +224,12 @@ public class Joueur {
         if (this.jumping) {
 
             futurY -= .5f * delta;
+
             if (futurY <= positionMaxSaut) {
                 jumping = false;
             }
 
             y = futurY;
-
         }
     }
 

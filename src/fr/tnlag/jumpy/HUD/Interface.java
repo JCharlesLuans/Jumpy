@@ -41,7 +41,7 @@ public class Interface {
     public void render(Graphics g) {
 
         g.setFont(font);
-        String text = "Pièce : " + joueur.getScore();
+        String text = "Pièce:" + joueur.getScore();
         g.resetTransform();
         font.drawString(40, 6f, text, Color.white);
         g.drawImage(this.affichagePiece, 0, 0);

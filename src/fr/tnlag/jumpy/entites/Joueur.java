@@ -61,6 +61,23 @@ public class Joueur {
         score = 0;
     }
 
+    public void collisionPiece(Piece piece) {
+        boolean pieceIn = x <= piece.getX() && piece.getX() <= (x+32f) && y <= piece.getY() && piece.getY() <= (y +32);
+        boolean joueurIn = piece.getX() <= x && x <= (piece.getX()+32f) && piece.getY() <= y && y <= (piece.getY()+32f);
+
+        if (piece.isActive() && (pieceIn || joueurIn)) {
+            piece.setActive(false);
+            score += 1;
+
+            try {
+                Music saut = new Music("ressource/son/piece.wav");
+                saut.play();
+            } catch (Exception err) {
+                System.out.println(err);
+            }
+
+        }
+    }
 
     /**
      * Applique la gravité au personnage

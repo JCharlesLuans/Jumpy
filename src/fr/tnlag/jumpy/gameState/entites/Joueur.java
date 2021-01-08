@@ -6,6 +6,7 @@
 package fr.tnlag.jumpy.gameState.entites;
 
 import fr.tnlag.jumpy.gameState.physique.HitBox;
+
 import org.newdawn.slick.*;
 
 /**
@@ -245,6 +246,10 @@ public class Joueur {
         mouvement = auSol ? mouvement : mouvement + 2;
 
         g.drawAnimation(listeAnimation[mouvement],  x, y);
+
+        // Affichage des hit box
+        hitBoxHaut.render(g);
+        //hitBoxBas.render(g);
     }
 
 
@@ -291,7 +296,6 @@ public class Joueur {
 
         collisionMob();
         collisionPiece();
-
     }
 
 

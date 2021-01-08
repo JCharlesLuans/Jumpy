@@ -32,7 +32,6 @@ public class Map {
 
     private Piece[] listePiece; // Piece présente sur la map
 
-
     private MobHostile[] listeMobs; //
 
     /**
@@ -75,7 +74,6 @@ public class Map {
     /**
      * Affichage de la map
      */
-
     public void render(Graphics graphics) throws SlickException {
 
         this.tiledMap.render(0,0,0); // Affichage du calque 0 (ciel)
@@ -92,7 +90,6 @@ public class Map {
         for (int i = 0; i < listeMobs.length; i++) {
             listeMobs[i].render(graphics);
         }
-
     }
 
     /**
@@ -109,7 +106,6 @@ public class Map {
         return tile != null;
     }
 
-
     public void update(int delta) {
 
         // Mise a jour des mobs
@@ -118,7 +114,6 @@ public class Map {
             listeMobs[i].update(delta, tiledMap.getWidth()*32-64);
         }
     }
-
 
     /**
      * @return toute les piece sur la map active
@@ -203,5 +198,4 @@ public class Map {
             e.printStackTrace();
         }
     }
-
 }

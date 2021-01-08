@@ -75,6 +75,7 @@ public class MapGameState extends BasicGameState {
         joueur.setAuSol(map.isCollision(joueur.getX(), joueur.getY()));
         if (joueur.estMort())
             game.enterState(GameOverState.ID);
+
         map.update(delta);
         camera.update(gameContainer, delta);
 

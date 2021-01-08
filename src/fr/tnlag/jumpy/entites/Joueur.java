@@ -101,9 +101,9 @@ public class Joueur {
     }
 
     /**
-     * Fait bouger le joueur
+     * Fait bouger le joueur vers la droite ou vers la gauche
      */
-    private void mouvement(int delta) {
+    private void mouvementHorizontal(int delta) {
 
         float futurX = x;   // X aprés mouvement du joueur
 
@@ -123,6 +123,28 @@ public class Joueur {
         // Limite de la map (0 : premiere coordonnée, si inf a 0, out of range car personnage hors de la map)
         if (futurX > 0) {
             this.x = futurX;
+        }
+    }
+
+    /**
+     * Fait bouger le joueur vers le haut
+     */
+    private void mouvementVertical(int delta) {
+        float futurY = y;
+
+        if (this.jumping) {
+
+            futurY -= .5f * delta;
+            if (futurY <= positionMax) {
+                jumping = false;
+            }
+
+            y = futurY;
+
+            //DEBUG
+            //System.out.println("Distance de saut : " + positionMax);
+            //System.out.println("Futur Y : " + futurY);
+
         }
     }
 
@@ -174,27 +196,9 @@ public class Joueur {
      */
     public void update(int delta) {
 
-        float futurY = y;
-
-        /* Déplacement vers la haut */
-
-        if (this.jumping) {
-
-            futurY -= .5f * delta;
-            if (futurY <= positionMax) {
-                jumping = false;
-            }
-
-            y = futurY;
-
-            //DEBUG
-            //System.out.println("Distance de saut : " + positionMax);
-            //System.out.println("Futur Y : " + futurY);
-
-        }
-
         gravity(delta);
-        mouvement(delta);
+        mouvementVertical(delta);
+        mouvementHorizontal(delta);
     }
 
 

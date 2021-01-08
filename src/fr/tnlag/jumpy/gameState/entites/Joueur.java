@@ -49,7 +49,7 @@ public class Joueur {
 
     private HitBox hitBoxHaut;
     private HitBox hitBoxBas;
-    
+
     /* Son du joueur */
     private Music sonSaut;
     private Music sonPiece;

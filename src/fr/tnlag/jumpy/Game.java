@@ -80,7 +80,7 @@ public class Game extends BasicGame {
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
         camera.render(gameContainer, graphics);
-        map.render();
+        map.render(graphics);
         joueur.render(graphics);
         affichage.render(graphics);
     }

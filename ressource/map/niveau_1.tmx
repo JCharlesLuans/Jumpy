@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="18">
  <tileset firstgid="1" source="decor.tsx"/>
  <tileset firstgid="13" source="logique.tsx"/>
  <layer id="1" name="ciel" width="64" height="16">
@@ -27,4 +27,9 @@
    H4sIAAAAAAAACu3U0QkAIAgFQBdo/3XboCgNEu7gfaogaAQA8LuxyIueuzk3NUBvbrze6R/2b/Mqd94xE+GcbwMAEAAA
   </data>
  </layer>
+ <objectgroup id="8" name="piece" height="1" width="1" >
+  <object id="11" x="138" y="197" width="32" height="32"/>
+  <object id="16" x="290" y="193" width="32" height="32"/>
+  <object id="17" x="673" y="169" width="32" height="32"/>
+ </objectgroup>
 </map>

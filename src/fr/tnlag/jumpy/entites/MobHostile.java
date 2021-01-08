@@ -18,6 +18,8 @@ public class MobHostile {
     public static final int DROITE = 1;
     public static final int GAUCHE = -1;
 
+    private static final float VITESSE = 0.25f;
+
     private Animation[] listeAnimation = new Animation[2];
 
     int direction;
@@ -63,11 +65,11 @@ public class MobHostile {
         if (direction == DROITE) {
             // DEBUG
             // System.out.println("Vers la droite");
-            futurX += .005f * delta;
+            futurX += VITESSE * delta;
         } else {
             // DEBUG
             // System.out.println("Vers la gauche");
-            futurX -= .005f * delta;
+            futurX -= VITESSE * delta;
         }
 
         // Limite de la map (0 : premiere coordonnée, si inf a 0, out of range car personnage hors de la map)

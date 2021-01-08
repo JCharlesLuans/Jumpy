@@ -21,7 +21,6 @@ import java.util.ArrayList;
  */
 public class Map {
 
-
     private static final int NOMBRE_MOBS = 3; // Nombre de mob par défaut
 
     public static final int TAILLE_TUILLE = 32;
@@ -38,7 +37,6 @@ public class Map {
      * Initialisation de la map
      */
     public void init() throws SlickException {
-        correctifMap("ressource/map/niveau_1.tmx");
         this.tiledMap = new TiledMap("ressource/map/niveau_1.tmx");
 
         int nbPiece = tiledMap.getObjectCount(ID_GROUPE_PIECE); // Nombre de pièce dans le groupe

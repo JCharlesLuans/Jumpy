@@ -23,7 +23,6 @@ public class Map {
 
     private static final int NOMBRE_MOBS = 1; // Nombre de mob par défaut
 
-
     public static final int ID_GROUPE_PIECE = 0;
 
     private TiledMap tiledMap;
@@ -59,15 +58,13 @@ public class Map {
             listePiece[idPiece] = new Piece(x, y);
 
         }
-
+        
 
         // Génération des mobs
         listeMobs = new MobHostile[NOMBRE_MOBS];
         for (int i = 0; i < NOMBRE_MOBS; i ++)  {
             x = 32 + (int)(Math.random() * ((tiledMap.getWidth()*32 - 32) + 1));
             listeMobs[i] = new MobHostile(x, tiledMap.getHeight()*32 - 128);
-
-            System.out.println(tiledMap.getHeight()*32);
         }
     }
 

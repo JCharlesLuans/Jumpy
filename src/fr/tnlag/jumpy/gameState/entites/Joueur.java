@@ -109,7 +109,7 @@ public class Joueur {
             sonPiece.play();
         }
     }
-
+    
     /**
      * Enlève une vie au joueur si il entre en collision avec un mob présent sur la map
      */

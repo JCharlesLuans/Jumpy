@@ -60,7 +60,6 @@ public class Map {
             listePiece[idPiece] = new Piece(x, y);
         }
 
-
         // Génération des mobs
         listeMobs = new MobHostile[NOMBRE_MOBS];
         for (int i = 0; i < NOMBRE_MOBS; i ++)  {
@@ -73,7 +72,6 @@ public class Map {
      * Affichage de la map
      */
     public void render(Graphics graphics) throws SlickException {
-
         this.tiledMap.render(0,0,0); // Affichage du calque 0 (ciel)
         this.tiledMap.render(0,0,1); // Affichage du background lointain
         this.tiledMap.render(0,0,2); // Affichage du background proche
@@ -204,4 +202,5 @@ public class Map {
     public int getHeight() {
         return tiledMap.getHeight();
     }
+
 }

@@ -50,6 +50,7 @@ public class Joueur {
     private HitBox hitBoxHaut;
     private HitBox hitBoxBas;
 
+<<<<<<< HEAD:src/fr/tnlag/jumpy/gameState/entites/Joueur.java
     /* Son du joueur */
     private Music sonSaut;
     private Music sonPiece;
@@ -96,7 +97,6 @@ public class Joueur {
 
         /* Initialisation du joueur qui se prend des dégas */
         takingDegas = false;
-
     }
 
     public void collisionPiece(Piece piece) {
@@ -255,6 +255,10 @@ public class Joueur {
         mouvement = auSol ? mouvement : mouvement + 2;
 
         g.drawAnimation(listeAnimation[mouvement],  x, y);
+
+        // Affichage des hit box
+        hitBoxHaut.render(g);
+        //hitBoxBas.render(g);
     }
 
     /**

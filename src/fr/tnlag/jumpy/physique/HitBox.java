@@ -17,10 +17,10 @@ import java.lang.management.GarbageCollectorMXBean;
  */
 public class HitBox {
 
-    private static float x, // Coordonnée coins supérieur gauche
+    private float x, // Coordonnée coins supérieur gauche
                          y; // Coordonnée coins supérieur gauche
 
-    private static float height, // Hauteur
+    private float height, // Hauteur
                          width;  // Longueur
 
     /**
@@ -40,13 +40,16 @@ public class HitBox {
      * @return true si colision false sinon
      */
     public boolean isCollision(HitBox hitBox) {
-        boolean hitBoxIn = x <= hitBox.getX() && hitBox.getX() <= (x+32f)
-                            && y <= hitBox.getY() && hitBox.getY() <= (y +32);
+        boolean hitBoxIn = x <= hitBox.getX() && hitBox.getX() <= (x+ width)
+                            && y <= hitBox.getY() && hitBox.getY() <= (y + height);
+
 
         boolean thisIn = hitBox.getX() <= x && x <= (hitBox.getX()+32f)
                             && hitBox.getY() <= y && y <= (hitBox.getY()+32f);
 
-        return thisIn || hitBoxIn;
+        // TODO comprendre pourquoi elle renvoie toujour true
+
+        return (thisIn || hitBoxIn);
     }
 
     public void render(Graphics graphics) {

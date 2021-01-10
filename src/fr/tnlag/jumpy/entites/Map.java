@@ -89,8 +89,14 @@ public class Map {
      * @return toute les piece sur la map active
      */
     public Piece[] getPieces() {
-
         return listePiece;
+    }
+
+    /**
+     * @return touts les mobs qui sont sur la map
+     */
+    public MobHostile[] getMobs() {
+        return listeMobs;
     }
 
     /**

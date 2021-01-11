@@ -21,8 +21,8 @@ import java.util.ArrayList;
  */
 public class Map {
 
-    private static final int NOMBRE_MOBS = 1; // Nombre de mob par défaut
 
+    private static final int NOMBRE_MOBS = 1; // Nombre de mob par défaut
 
     public static final int ID_GROUPE_PIECE = 0;
 
@@ -31,7 +31,6 @@ public class Map {
     public final int TAILLE_TUILLE = 32;
 
     private Piece[] listePiece; // Piece présente sur la map
-
 
     private MobHostile[] listeMobs; //
 
@@ -46,19 +45,19 @@ public class Map {
 
         System.out.println("Nb piece = " + nbPiece);
 
-        /* Recherche des piece sur la map */
-        listePiece = new Piece[nbPiece];
+
 
         int x = 0,
             y = 0;
 
+        /* Recherche des piece sur la map et génération des pièces */
+        listePiece = new Piece[nbPiece];
         for (int idPiece = 0; idPiece < nbPiece; idPiece++) {
 
             x = tiledMap.getObjectX(ID_GROUPE_PIECE, idPiece);
             y = tiledMap.getObjectY(ID_GROUPE_PIECE, idPiece);
 
             listePiece[idPiece] = new Piece(x, y);
-
         }
 
 
@@ -67,15 +66,12 @@ public class Map {
         for (int i = 0; i < NOMBRE_MOBS; i ++)  {
             x = 32 + (int)(Math.random() * ((tiledMap.getWidth()*32 - 32) + 1));
             listeMobs[i] = new MobHostile(x, tiledMap.getHeight()*32 - 128);
-
-            System.out.println(tiledMap.getHeight()*32);
         }
     }
 
     /**
      * Affichage de la map
      */
-
     public void render(Graphics graphics) throws SlickException {
 
         this.tiledMap.render(0,0,0); // Affichage du calque 0 (ciel)
@@ -92,7 +88,6 @@ public class Map {
         for (int i = 0; i < listeMobs.length; i++) {
             listeMobs[i].render(graphics);
         }
-
     }
 
     /**
@@ -109,7 +104,6 @@ public class Map {
         return tile != null;
     }
 
-
     public void update(int delta) {
 
         // Mise a jour des mobs
@@ -118,7 +112,6 @@ public class Map {
             listeMobs[i].update(delta, tiledMap.getWidth()*32-64);
         }
     }
-
 
     /**
      * @return toute les piece sur la map active
@@ -203,5 +196,4 @@ public class Map {
             e.printStackTrace();
         }
     }
-
 }

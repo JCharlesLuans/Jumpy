@@ -115,10 +115,20 @@ public class Joueur {
      */
     private void collisionMob() {
         for (int i = 0; i < map.getMobs().length; i++) {
+
+            /*
+              Si la hit box du corps du joueur se retrouve en contact avec la hit box du mob, que celui ci est actif
+              et que le joueur ne  se prend pas des dégas, alors il peut se prendre des dégats
+             */
             if (hitBoxHaut.isCollision(map.getMobs()[i].getHitBox()) && map.getMobs()[i].isActive() && !takingDegas) {
                 takingDegas = true;
                 vie -= 1;
                 map.getMobs()[i].changementSens();
+
+            /*
+                Si la hit box du bas entre en colision avec la hit box du mob et que celui ci est actif alors il deviens
+                inactif
+             */
             } else if (hitBoxBas.isCollision(map.getMobs()[i].getHitBox()) && map.getMobs()[i].isActive()) {
                 auSol = true;
                 saut();
@@ -223,12 +233,12 @@ public class Joueur {
         if (this.jumping) {
 
             futurY -= .5f * delta;
+
             if (futurY <= positionMaxSaut) {
                 jumping = false;
             }
 
             y = futurY;
-
         }
     }
 
@@ -291,7 +301,6 @@ public class Joueur {
 
         collisionMob();
         collisionPiece();
-
     }
 
 

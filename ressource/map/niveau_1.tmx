@@ -9,12 +9,12 @@
  </layer>
  <layer id="5" name="sol3" width="64" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2POQoAIAwE03n+/71ai8VCjAjOwJZ7mQEAAMDrlKm6UQvIVHoUr2fbSp9KG+WATKVH8Xq2qVv5fz6T/3oP/+/8j+D3/z8zABKHhxIAEAAA
+   H4sIAAAAAAAACu3POQ4AIAwDwXSc/38v1IjCIkCTHcllDpsBAICIykwV0w5m1xmPPpM2yQ92KneUWc9v6q/0v7+T/vod+v/p/0L0/pENz7TqaQAQAAA=
   </data>
  </layer>
  <layer id="2" name="sol2" width="64" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3SSwoAIAgAUXf9u/9xs12rCCSDmAezFBQUAQAAAIC9pOWl8nYdd1ULS/HtOu5+uX/+bTMkhtl++7gDA7sdNZUAEAAA
+   H4sIAAAAAAAACu3TOQoAIAwAwXTe/v+5aidiIYgHugNbCgkYEQAAgLuZnO3kTg4FfKa9w9/uz+dUlT47znav7F/+bZhIJt7G1csNSN9sP6MAEAAA
   </data>
  </layer>
  <layer id="3" name="sol" width="64" height="16">
@@ -24,7 +24,7 @@
  </layer>
  <layer id="4" name="logic" width="64" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3U0QkAIAgFQBdo/3XboCgNEu7gfaogaAQA8LuxyIueuzk3NUBvbrze6R/2b/Mqd94xE+GcbwMAEAAA
+   H4sIAAAAAAAACu3UwQkAMAgEMBfo/us6g1WE0gTuKYjgRQAAPzrF3Mxu7Ars8H/zqj2sC/smb/5iEtBm8jkAEAAA
   </data>
  </layer>
  <objectgroup id="8" name="piece" height="1" width="1" >

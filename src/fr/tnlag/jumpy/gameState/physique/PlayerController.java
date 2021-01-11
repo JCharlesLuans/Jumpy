@@ -3,9 +3,9 @@
  * Copyright et copyleft TNLag Corp.
  */
 
-package fr.tnlag.jumpy.physique;
+package fr.tnlag.jumpy.gameState.physique;
 
-import fr.tnlag.jumpy.entites.Joueur;
+import fr.tnlag.jumpy.gameState.entites.Joueur;
 import org.newdawn.slick.ControllerListener;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;

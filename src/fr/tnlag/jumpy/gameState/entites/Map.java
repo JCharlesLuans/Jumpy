@@ -3,7 +3,7 @@
  * Copyright et copyleft TNLag Corp.
  */
 
-package fr.tnlag.jumpy.entites;
+package fr.tnlag.jumpy.gameState.entites;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -21,6 +21,9 @@ import java.util.ArrayList;
  */
 public class Map {
 
+    private static final int NOMBRE_MOBS = 1; // Nombre de mob par défaut
+
+
     public static final int ID_GROUPE_PIECE = 0;
 
     private TiledMap tiledMap;
@@ -28,6 +31,9 @@ public class Map {
     public final int TAILLE_TUILLE = 32;
 
     private Piece[] listePiece; // Piece présente sur la map
+
+
+    private MobHostile[] listeMobs; //
 
     /**
      * Initialisation de la map
@@ -55,20 +61,38 @@ public class Map {
 
         }
 
+
+        // Génération des mobs
+        listeMobs = new MobHostile[NOMBRE_MOBS];
+        for (int i = 0; i < NOMBRE_MOBS; i ++)  {
+            x = 32 + (int)(Math.random() * ((tiledMap.getWidth()*32 - 32) + 1));
+            listeMobs[i] = new MobHostile(x, tiledMap.getHeight()*32 - 128);
+
+            System.out.println(tiledMap.getHeight()*32);
+        }
     }
 
     /**
      * Affichage de la map
      */
-    public void render(Graphics graphics) {
+
+    public void render(Graphics graphics) throws SlickException {
+
         this.tiledMap.render(0,0,0); // Affichage du calque 0 (ciel)
         this.tiledMap.render(0,0,1); // Affichage du background lointain
         this.tiledMap.render(0,0,2); // Affichage du background proche
         this.tiledMap.render(0,0,3); // Affichage du premier plan
 
+        // Affichage des pièces
         for (int i = 0; i < listePiece.length; i ++) {
             listePiece[i].render(graphics);
         }
+
+        // Affichage des mobs
+        for (int i = 0; i < listeMobs.length; i++) {
+            listeMobs[i].render(graphics);
+        }
+
     }
 
     /**
@@ -85,12 +109,29 @@ public class Map {
         return tile != null;
     }
 
+
+    public void update(int delta) {
+
+        // Mise a jour des mobs
+        for(int i = 0; i < listeMobs.length; i++) {
+            listeMobs[i].setAuSol(this.isCollision(listeMobs[i].getX(), listeMobs[i].getY()));
+            listeMobs[i].update(delta, tiledMap.getWidth()*32-64);
+        }
+    }
+
+
     /**
      * @return toute les piece sur la map active
      */
     public Piece[] getPieces() {
-
         return listePiece;
+    }
+
+    /**
+     * @return touts les mobs qui sont sur la map
+     */
+    public MobHostile[] getMobs() {
+        return listeMobs;
     }
 
     /**
@@ -162,7 +203,5 @@ public class Map {
             e.printStackTrace();
         }
     }
-
-
 
 }

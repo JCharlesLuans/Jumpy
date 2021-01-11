@@ -3,8 +3,9 @@
  * Copyright et copyleft TNLag Corp.
  */
 
-package fr.tnlag.jumpy.entites;
+package fr.tnlag.jumpy.gameState.entites;
 
+import fr.tnlag.jumpy.gameState.physique.HitBox;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -19,29 +20,35 @@ import org.newdawn.slick.SpriteSheet;
  */
 public class Piece {
 
+    private static final int WIDTH = 32;
+    private static final int HEIGHT = 32;
+
     private boolean active;
 
-    private float x,
-                  y;
+    private float x,  // Position du coin gauche supérieur
+                  y;  // Position du coin gauche supérieur
 
-    private Animation animation;
+    private Animation animation; // Animation de l'objet
 
-    private static final int TAILLE_PIECE = 32;
+    private HitBox hitBox;
 
     /**
      * Créer une nouvelle pièce
      */
     public Piece(float newX, float newY) throws SlickException {
+
         this.x = newX;
         this.y = newY;
 
-        active = true;
+        active = true; // Affiche et active la pièce
 
-        SpriteSheet feuilleSprite = new SpriteSheet("ressource/sprite/piece.png", 32, 32);
+        SpriteSheet feuilleSprite = new SpriteSheet("ressource/sprite/piece.png", WIDTH, HEIGHT);
         animation = new Animation();
         animation.addFrame(feuilleSprite.getSprite(0, 0), 150);
         animation.addFrame(feuilleSprite.getSprite(1, 0), 150);
         animation.addFrame(feuilleSprite.getSprite(2, 0), 150);
+
+        hitBox = new HitBox(x, y, WIDTH, HEIGHT);
 
     }
 
@@ -76,5 +83,9 @@ public class Piece {
      */
     public boolean isActive() {
         return this.active;
+    }
+
+    public HitBox getHitBox() {
+        return hitBox;
     }
 }

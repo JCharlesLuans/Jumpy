@@ -1,10 +1,11 @@
 /*
- * fr.tnlag.jumpy.entites.Joueur.java             05/01/2021
+ * fr.tnlag.jumpy.gameState.entites.Joueur.java             05/01/2021
  * Copyright et copyleft TNLag Corp.
  */
 
-package fr.tnlag.jumpy.entites;
+package fr.tnlag.jumpy.gameState.entites;
 
+import fr.tnlag.jumpy.gameState.physique.HitBox;
 import org.newdawn.slick.*;
 
 /**
@@ -15,50 +16,87 @@ import org.newdawn.slick.*;
  */
 public class Joueur {
 
+    private static final float VITESSE = 0.4f;
+
+    private static final int WIDTH_SPRITE = 32;
+    private static final int HEIGHT_SPRITE = 32;
+
     public static final int DROITE = 1;
     public static final int GAUCHE = -1;
 
     public final float DISTANCE_SAUT = 128f;
 
-    private int score;
+    /* -------------------------------------------------------------------------------------------------- */
+    /* Champs de la classe */
 
-    private float positionMax;
-    private boolean jumping;  // Indicateur de saut
+    private Map map; // Map sur laquelle évolue le joueur
+
+    private int score; // Score du joueur
+    private int vie;   // Nombre de vie du joueur
+
+    private boolean takingDegas; // Indicateur du joueur qui est en train de se prendre des dégas
+
+    private float positionMaxSaut; // Indicateur de la position max pour le saut
+    private boolean jumping;       // Indicateur de saut
 
     private float x, // Position en x du personnage
                   y; // Position en y du personnage
 
-    private int direction; // 1 -> Déplacement vers la droite | -1 déplacement vers la gauche
+    private int direction;   // 1 -> Déplacement vers la droite | -1 déplacement vers la gauche
 
     private boolean mooving; // Indicateur du déplacement
     private boolean auSol;   // Indicateur pour l' application de la gravité
 
+    private HitBox hitBoxHaut;
+    private HitBox hitBoxBas;
+
+    /* Son du joueur */
+    private Music sonSaut;
+    private Music sonPiece;
+
+    /* Timer */
+    private int timer;
+
+    /* ------------------------------------------------------------------------------------------------------- */
+    /* Méthode */
 
     private Animation[] listeAnimation = new Animation[4]; // Liste des animation du personnage
 
     /**
      * Création du joueur avec les paramètre par défaut indiquer
      */
-    public Joueur() {
+    public Joueur(Map map) throws SlickException {
+
+        sonSaut = new Music("/ressource/son/bond.wav");
+        sonPiece = new Music("/ressource/son/piece.wav");
+
+        // Init de la map dans le joueur
+        this.map = map;
 
         /* Position par défaut du personnage joueur */
         x = 16;
         y = 448;
-        positionMax = 0;
+        positionMaxSaut = 0;
 
-        /* Direction apr défaut du personnage joueur */
+        /* Direction par défaut du personnage joueur */
         direction = DROITE;
         
         /* Indicateur de mouvement */
         mooving = false;
 
-        /* Initialisation du tableau des animation */
-        for (int i = 0; i < 4; i++) {
-            listeAnimation[i] = new Animation();
-        }
+        initAnimation();
 
-        /* Initialisation du score */
+        /* Initialisation du score et de la vie */
         score = 0;
+        vie = 3;
+
+        /* Création des hit box */
+        hitBoxHaut = new HitBox(x, y, WIDTH_SPRITE, HEIGHT_SPRITE);
+        hitBoxBas  = new HitBox(x, y + HEIGHT_SPRITE, WIDTH_SPRITE, HEIGHT_SPRITE / 8f);
+
+        /* Initialisation du joueur qui se prend des dégas */
+        takingDegas = false;
+
     }
 
     public void collisionPiece(Piece piece) {
@@ -68,15 +106,46 @@ public class Joueur {
         if (piece.isActive() && (pieceIn || joueurIn)) {
             piece.setActive(false);
             score += 1;
-
-            try {
-                Music saut = new Music("ressource/son/piece.wav");
-                saut.play();
-            } catch (Exception err) {
-                System.out.println(err);
-            }
-
+            sonPiece.play();
         }
+    }
+
+    /**
+     * Enlève une vie au joueur si il entre en collision avec un mob présent sur la map
+     */
+    private void collisionMob() {
+        for (int i = 0; i < map.getMobs().length; i++) {
+            if (hitBoxHaut.isCollision(map.getMobs()[i].getHitBox()) && map.getMobs()[i].isActive() && !takingDegas) {
+                takingDegas = true;
+                vie -= 1;
+                map.getMobs()[i].changementSens();
+            } else if (hitBoxBas.isCollision(map.getMobs()[i].getHitBox()) && map.getMobs()[i].isActive()) {
+                auSol = true;
+                saut();
+                map.getMobs()[i].setActive(false);
+            }
+        }
+
+    }
+
+    /**
+     * Augmente le score de un s' il y a une collision avec un joueur
+     */
+    private void collisionPiece() {
+        for (int i = 0; i < map.getPieces().length; i++) {
+            if (hitBoxHaut.isCollision(map.getPieces()[i].getHitBox()) && map.getPieces()[i].isActive() ) {
+                map.getPieces()[i].setActive(false);
+                score++;
+                sonPiece.play();
+            }
+        }
+    }
+
+    /**
+     * @return true si le joueur n'a plus de vie, false sinon
+     */
+    public boolean estMort() {
+        return vie == 0;
     }
 
     /**
@@ -86,18 +155,20 @@ public class Joueur {
         if (!this.auSol) {
             this.y += .2f * delta;
         }
-
     }
 
     /**
-     * Initialisation du joueur
-     * @param container conteneur du jeu dans le quel le joueur va évoluer
+     * Initialisation de l' animation du joueur
      * @throws SlickException
      */
-    public void init(GameContainer container) throws SlickException {
+    public void initAnimation() throws SlickException {
+        /* Initialisation du tableau des animation */
+        for (int i = 0; i < 4; i++) {
+            listeAnimation[i] = new Animation();
+        }
 
         // Chargement du sprite
-        SpriteSheet feuilleSprite = new SpriteSheet("/ressource/sprite/joueur.png", 32, 32);
+        SpriteSheet feuilleSprite = new SpriteSheet("/ressource/sprite/joueur.png", WIDTH_SPRITE, HEIGHT_SPRITE);
 
         // Chargement de l'animation
         listeAnimation[0].addFrame(feuilleSprite.getSprite(0,0), 100);
@@ -129,11 +200,11 @@ public class Joueur {
             if (direction == DROITE) {
                 // DEBUG
                 // System.out.println("Vers la droite");
-                futurX += .2f * delta;
+                futurX += VITESSE * delta;
             } else {
                 // DEBUG
                 // System.out.println("Vers la gauche");
-                futurX -= .2f * delta;
+                futurX -= VITESSE * delta;
             }
         }
 
@@ -152,15 +223,11 @@ public class Joueur {
         if (this.jumping) {
 
             futurY -= .5f * delta;
-            if (futurY <= positionMax) {
+            if (futurY <= positionMaxSaut) {
                 jumping = false;
             }
 
             y = futurY;
-
-            //DEBUG
-            //System.out.println("Distance de saut : " + positionMax);
-            //System.out.println("Futur Y : " + futurY);
 
         }
     }
@@ -177,10 +244,6 @@ public class Joueur {
         mouvement = direction == DROITE ? 0 : 1;
         mouvement = auSol ? mouvement : mouvement + 2;
 
-        // DEBUG
-        //System.out.println("Direction : " + direction);
-        //System.out.println("Mouvement : " + mouvement);
-
         g.drawAnimation(listeAnimation[mouvement],  x, y);
     }
 
@@ -192,14 +255,9 @@ public class Joueur {
     public void saut() {
         if (auSol) {
             this.jumping = true;
-            positionMax = y - DISTANCE_SAUT;
+            positionMaxSaut = y - DISTANCE_SAUT;
+            sonSaut.play();
 
-            try {
-                Music saut = new Music("/ressource/son/bond.wav");
-                saut.play();
-            } catch (Exception err) {
-                System.out.println(err);
-            }
         }
     }
 
@@ -213,13 +271,32 @@ public class Joueur {
      */
     public void update(int delta) {
 
+        // Mise à jour du timer
+        timer += delta;
+
+        if (timer >= 3000) {
+            timer = 0;
+            if (takingDegas) {
+                takingDegas = false;
+            }
+        }
+
+
         gravity(delta);
         mouvementVertical(delta);
         mouvementHorizontal(delta);
+
+        hitBoxHaut.update(x, y);
+        hitBoxBas.update(x, (y + HEIGHT_SPRITE));
+
+        collisionMob();
+        collisionPiece();
+
     }
 
 
     /* ----------------------------------------------------------------------------------------------------- */
+    /* Accesseur */
 
 
     /**
@@ -275,5 +352,12 @@ public class Joueur {
      */
     public int getScore() {
         return score;
+    }
+
+    /**
+     * @return le nombre de vie du joueur
+     */
+    public int getVie() {
+        return vie;
     }
 }

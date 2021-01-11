@@ -3,7 +3,7 @@
  * Copyright et copyleft TNLag Corp.
  */
 
-package fr.tnlag.jumpy.entites;
+package fr.tnlag.jumpy.gameState.entites;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -58,8 +58,6 @@ public class Camera {
             x = joueur.getX();
             y = 0;
 
-//            if (joueur.getX() > this.x + middle) this.x = joueur.getX() - middle;
-//            if (joueur.getX() < this.x - middle) this.x = joueur.getX() + middle;
         }
 
         // DEBUG

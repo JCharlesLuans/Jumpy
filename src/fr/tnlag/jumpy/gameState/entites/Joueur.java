@@ -56,7 +56,6 @@ public class Joueur {
 
     /* Timer */
     private int timer;
-
     /* ------------------------------------------------------------------------------------------------------- */
     /* Méthode */
 
@@ -93,6 +92,9 @@ public class Joueur {
         /* Création des hit box */
         hitBoxHaut = new HitBox(x, y, WIDTH_SPRITE, HEIGHT_SPRITE);
         hitBoxBas  = new HitBox(x, y + HEIGHT_SPRITE, WIDTH_SPRITE, HEIGHT_SPRITE / 8f);
+
+        /* Initialisation du joueur qui se prend des dégas */
+        takingDegas = false;
 
         /* Initialisation du joueur qui se prend des dégas */
         takingDegas = false;

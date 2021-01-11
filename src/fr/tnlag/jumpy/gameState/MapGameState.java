@@ -14,9 +14,6 @@ import fr.tnlag.jumpy.statiqueState.GameOverState;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
-import org.newdawn.slick.state.transition.FadeOutTransition;
-import org.newdawn.slick.state.transition.Transition;
 
 /**
  * Classe de lancement et de chargement du jeu.
@@ -56,17 +53,20 @@ public class MapGameState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame game) throws SlickException {
 
+
         this.container = gameContainer;
         container.setShowFPS(false);
 
         map.init();
         joueur = new Joueur(map);
-        camera = new Camera(gameContainer, joueur, map.getWidth(), map.getHeight());
+        camera = new Camera(container, joueur, map.getWidth(), map.getHeight());
         affichage.init(joueur);
 
         PlayerController controller = new PlayerController(joueur);
         container.getInput().addKeyListener(controller);
         container.getInput().addControllerListener(controller);
+
+
     }
 
     @Override
@@ -74,8 +74,7 @@ public class MapGameState extends BasicGameState {
         joueur.update(delta);
         joueur.setAuSol(map.isCollision(joueur.getX(), joueur.getY()));
         if (joueur.estMort())
-            game.enterState(GameOverState.ID, new FadeOutTransition(), new FadeInTransition());
-
+            game.enterState(GameOverState.ID);
         map.update(delta);
         camera.update(gameContainer, delta);
 

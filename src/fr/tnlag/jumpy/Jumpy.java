@@ -30,7 +30,6 @@ public class Jumpy extends StateBasedGame {
         addState(new MenuState());
         addState(new MapGameState());
         addState(new GameOverState());
-
     }
 
     /**

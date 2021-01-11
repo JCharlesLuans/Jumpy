@@ -92,7 +92,4 @@ public class GameOverState extends BasicGameState {
     public void controllerButtonPressed(int controller, int buttton) {
         stateBasedGame.enterState(MenuState.ID);
     }
-
-
-
 }

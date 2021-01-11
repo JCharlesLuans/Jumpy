@@ -24,11 +24,11 @@ public class Map {
 
     private static final int NOMBRE_MOBS = 1; // Nombre de mob par défaut
 
+    public static final int TAILLE_TUILLE = 32;
+
     public static final int ID_GROUPE_PIECE = 0;
 
     private TiledMap tiledMap;
-
-    public final int TAILLE_TUILLE = 32;
 
     private Piece[] listePiece; // Piece présente sur la map
 
@@ -195,5 +195,13 @@ public class Map {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getWidth() {
+        return tiledMap.getWidth();
+    }
+
+    public int getHeight() {
+        return tiledMap.getHeight();
     }
 }

@@ -22,19 +22,21 @@ public class Camera {
 
     private Joueur joueur; // Joueur que suis la camera
 
-
-    /**
-     * Création de la camera
-     */
-    public Camera() {
-        x = y = 0;
-    }
+    private int maxWidth,
+                maxHeight;
 
     /**
      * Initialise la camera qui serra centré sur les paramètres
-     * @param joueur : joueur que dois suivre la camera
+     * @param container : fenètre de jeu
+     * @param joueur    : joueur que dois suivre la camera
+     * @param maxWidth  : width  maximal de la map
+     * @param maxHeight : height maximal de la map
      */
-    public void init(Joueur joueur, GameContainer container) {
+    public Camera(GameContainer container, Joueur joueur, int maxWidth, int maxHeight) {
+
+        this.maxHeight = maxHeight * Map.TAILLE_TUILLE;
+        this.maxWidth = maxWidth * Map.TAILLE_TUILLE;
+
         this.joueur = joueur;
         this.x = container.getWidth() / 2f;
         this.y = 0;
@@ -46,13 +48,9 @@ public class Camera {
      */
     public void update(GameContainer container, int delta) {
 
-        int middle = container.getWidth() / 4;
-
-        boolean limiteGauche = joueur.getX() - container.getWidth() / 2f <= container.getWidth();
+        boolean limiteGauche = joueur.getX() + container.getWidth() / 2f <= maxWidth;
         boolean limiteDroite = joueur.getX() - container.getWidth() / 2f >= 0;
         if ( limiteDroite && limiteGauche ) {
-
-
 
             /* Mise a jours du centre de la camera */
             x = joueur.getX();
@@ -60,8 +58,6 @@ public class Camera {
 
         }
 
-        // DEBUG
-        // System.out.println("X = " + x + "\nY = " + y );
     }
 
     /**

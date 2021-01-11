@@ -36,7 +36,7 @@ public class MapGameState extends BasicGameState {
     Joueur joueur;
 
     // Camera
-    Camera camera = new Camera();
+    Camera camera;
 
     // Affichage
     Interface affichage = new Interface();
@@ -53,13 +53,12 @@ public class MapGameState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame game) throws SlickException {
 
-
         this.container = gameContainer;
         container.setShowFPS(false);
 
         map.init();
         joueur = new Joueur(map);
-        camera.init(joueur, gameContainer);
+        camera = new Camera(gameContainer, joueur, map.getWidth(), map.getHeight());
         affichage.init(joueur);
 
         PlayerController controller = new PlayerController(joueur);

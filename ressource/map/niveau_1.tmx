@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="25">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="128" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="25">
  <tileset firstgid="1" source="decor.tsx"/>
  <tileset firstgid="13" source="logique.tsx"/>
- <layer id="1" name="ciel" width="64" height="16">
+ <layer id="1" name="ciel" width="128" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2UQQoAIAgELan/P7mgD5hWruFhjuKgyzIRsQNlUp12I3i2SX/oop2Ver74p+Zm0lmrv8UNgej+yQK1VyVeJ9xRcyzxQnW/8afIRPnTD3hmDSHnO1k73bGWnHvcDqljsyOSCAxScPe1ABAAAA==
+   H4sIAAAAAAAACu2WMRbAIAhDbX3t/Y9cVzegGIIy/NGaEKj01loP4BrcQXczkMX/Kp3P4AVq0ZxFZGPxH4FUJ3vNNGe9somYceudf7Vm6WckETWx3ln5ceP1L8myd5S/Ga/5jJpzSS4e2Xn7k2qyaN+1V625ML5BUk0W7Vn3zJP6NgPouWGcUyTV/2fXWtv/Kzxov5l1P9HUGrVjrvKg0abtQfR+wlpn5reLWdvJXoqiKHbkA3RlG7EAIAAA
   </data>
  </layer>
- <layer id="5" name="sol3" width="64" height="16">
+ <layer id="5" name="sol3" width="128" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3POQ4AIAwDwXSc/38v1IjCIkCTHcllDpsBAICIykwV0w5m1xmPPpM2yQ92KneUWc9v6q/0v7+T/vod+v/p/0L0/pENz7TqaQAQAAA=
+   H4sIAAAAAAAACu3Uyw6AIAxEUXb4+v/vFRfsMCk6xRruSbpsSjsJKQEAAAAAgK+spbZG7QNnWeZbepVvPkrlRi3CGbO5u6nlzpZeZTbkr0f+Gj3/qNdf/gT5a/TcMcqbL2/yr8if/KPv6Y38Y+/p7a/5Y6yafwQndciqjwAgAAA=
   </data>
  </layer>
- <layer id="2" name="sol2" width="64" height="16">
+ <layer id="2" name="sol2" width="128" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3TOQoAIAwAwXTe/v+5aidiIYgHugNbCgkYEQAAgLuZnO3kTg4FfKa9w9/uz+dUlT47znav7F/+bZhIJt7G1csNSN9sP6MAEAAA
+   H4sIAAAAAAAACu3VywqAIBBA0dn19v8/N9tFBC3EjDwH7lIYEZwIAAAAgG+ZcvNNS8uhAKAT1z1s//ZlzQ2nxrbj8DLv/w/Hv70VFAVnU+3L8WgHFI0GaAAgAAA=
   </data>
  </layer>
- <layer id="3" name="sol" width="64" height="16">
+ <layer id="3" name="sol" width="128" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3SSwoAIAhAwXZ973/e7AiBBMEMvLUilgIAAMBrPRoJzdeLJ1lRTahdzMy6+Y+dP9mHc6dmABAAAA==
+   H4sIAAAAAAAACu3XMQ4AERBAUZ1l9/7nRa8gkRXyXvL7aUxGCAAAQJNqebB304wAAPSN3HJuOIA9Zv7b9vh9vlpc0PP34Adb9eZ0Xm1PFtkVE8cAIAAA
   </data>
  </layer>
- <layer id="4" name="logic" width="64" height="16">
+ <layer id="4" name="logic" width="128" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3UwQkAMAgEMBfo/us6g1WE0gTuKYjgRQAAPzrF3Mxu7Ars8H/zqj2sC/smb/5iEtBm8jkAEAAA
+   H4sIAAAAAAAACu3UAQkAMAhFQQusf92xCDoRhDv4DfRFAAAAz0kOoMNkZ346N91G/QWyJjqV7ahmsZVbpluln7oKdZ0/Z/t2AZ+QuAMAIAAA
   </data>
  </layer>
  <objectgroup id="8" name="piece" height="1" width="1" >

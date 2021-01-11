@@ -257,8 +257,6 @@ public class Joueur {
         g.drawAnimation(listeAnimation[mouvement],  x, y);
     }
 
-
-
     /**
      * Fait sauter le joueur
      */
@@ -290,7 +288,6 @@ public class Joueur {
                 takingDegas = false;
             }
         }
-
 
         gravity(delta);
         mouvementVertical(delta);

@@ -21,6 +21,7 @@ import java.util.ArrayList;
  */
 public class Map {
 
+
     private static final int NOMBRE_MOBS = 1; // Nombre de mob par défaut
 
     public static final int ID_GROUPE_PIECE = 0;
@@ -44,21 +45,21 @@ public class Map {
 
         System.out.println("Nb piece = " + nbPiece);
 
-        /* Recherche des piece sur la map */
-        listePiece = new Piece[nbPiece];
+
 
         int x = 0,
             y = 0;
 
+        /* Recherche des piece sur la map et génération des pièces */
+        listePiece = new Piece[nbPiece];
         for (int idPiece = 0; idPiece < nbPiece; idPiece++) {
 
             x = tiledMap.getObjectX(ID_GROUPE_PIECE, idPiece);
             y = tiledMap.getObjectY(ID_GROUPE_PIECE, idPiece);
 
             listePiece[idPiece] = new Piece(x, y);
-
         }
-        
+
 
         // Génération des mobs
         listeMobs = new MobHostile[NOMBRE_MOBS];

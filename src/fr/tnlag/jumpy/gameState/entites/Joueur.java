@@ -6,7 +6,6 @@
 package fr.tnlag.jumpy.gameState.entites;
 
 import fr.tnlag.jumpy.gameState.physique.HitBox;
-
 import org.newdawn.slick.*;
 
 /**
@@ -52,7 +51,6 @@ public class Joueur {
     private HitBox hitBoxBas;
 
     /* Son du joueur */
-
     private Music sonSaut;
     private Music sonPiece;
 

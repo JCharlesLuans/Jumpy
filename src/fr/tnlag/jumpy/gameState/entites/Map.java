@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class Map {
 
 
-    private static final int NOMBRE_MOBS = 1; // Nombre de mob par défaut
+    private static final int NOMBRE_MOBS = 3; // Nombre de mob par défaut
 
     public static final int TAILLE_TUILLE = 32;
 

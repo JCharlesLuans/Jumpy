@@ -7,6 +7,7 @@ package fr.tnlag.jumpy;
 
 import fr.tnlag.jumpy.gameState.MapGameState;
 import fr.tnlag.jumpy.statiqueState.GameOverState;
+import fr.tnlag.jumpy.statiqueState.MenuState;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -26,8 +27,10 @@ public class Jumpy extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
+        addState(new MenuState());
         addState(new MapGameState());
         addState(new GameOverState());
+
     }
 
     /**

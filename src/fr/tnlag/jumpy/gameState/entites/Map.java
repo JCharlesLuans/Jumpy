@@ -37,6 +37,8 @@ public class Map {
      * Initialisation de la map
      */
     public void init() throws SlickException {
+
+        correctifMap("ressource/map/niveau_1.tmx");
         this.tiledMap = new TiledMap("ressource/map/niveau_1.tmx");
 
         int nbPiece = tiledMap.getObjectCount(ID_GROUPE_PIECE); // Nombre de pièce dans le groupe

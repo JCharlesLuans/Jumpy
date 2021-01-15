@@ -64,7 +64,7 @@ public class Map {
         listeMobs = new MobHostile[NOMBRE_MOBS];
         for (int i = 0; i < NOMBRE_MOBS; i ++)  {
             x = 32 + (int)(Math.random() * ((tiledMap.getWidth()*32 - 32) + 1));
-            listeMobs[i] = new MobHostile(x, tiledMap.getHeight()*32 - 128);
+            listeMobs[i] = new MobHostile(this, x, tiledMap.getHeight()*32 - 128);
         }
     }
 

@@ -24,20 +24,28 @@ public class MobHostile {
     private static final int WIDTH_SPRITE  = 32;
     private static final int HEIGHT_SPRITE = 32;
 
+    /* ------------------------------------------------------------------------------------------ */
+
+    private Map mapActuelle; // Map sur laquelle évolue le PNJ
+
     private Animation[] listeAnimation = new Animation[2];
 
-    int direction;
+    int direction;  // Direction dans laquel se déplace le PNJ
 
     private float x, // Position en x du personnage non joueur
                   y; // Position en y du personnage non joueur
 
     private boolean auSol;
 
-    private HitBox hitBox; // Hit box du personnage non joueur
+    private HitBox hitBox; // Hit box du PNJ
 
-    private boolean active;
+    private boolean active; // Indique si le PNJ est actif ou pas
 
-    public MobHostile(float x, float y) throws SlickException {
+    /* --------------------------------------------------------------------------- */
+
+    public MobHostile(Map map, float x, float y) throws SlickException {
+
+        this.mapActuelle = map;
 
         /* Direction par défaut du personnage non joueur */
         direction = GAUCHE;
@@ -107,6 +115,11 @@ public class MobHostile {
             }
         } else {
             direction = DROITE;
+        }
+
+        // Evite les troue dans la map
+        if (!mapActuelle.isCollision(futurX, y)) {
+            this.changementSens();
         }
 
     }

@@ -1,10 +1,11 @@
 TODO List
 -
 
-- Serveur / Client
 - Piege
+- Bonus
 - Boss
 - Menu
+- Serveur / Client
 - Sauvegarde
 
 ------------------------------

@@ -52,7 +52,7 @@ public class MapGameState extends BasicGameState {
     }
 
     public void enter(GameContainer gameContainer, StateBasedGame game) throws SlickException {
-        backgroundMusic.play(1, 0.10f);
+        backgroundMusic.loop(1, 0.10f);
     }
 
     @Override

@@ -27,7 +27,7 @@ import org.newdawn.slick.state.transition.Transition;
 public class MapGameState extends BasicGameState {
 
     // ID
-    private final int ID = 1;
+    public static final int ID = 1;
 
     // Conteneur du jeu
     private GameContainer container;

@@ -51,8 +51,8 @@ public class Joueur {
     private HitBox hitBoxBas;
 
     /* Son du joueur */
-    private Music sonSaut;
-    private Music sonPiece;
+    private Sound sonSaut;
+    private Sound sonPiece;
 
     /* Timer */
     private int timer;
@@ -66,8 +66,8 @@ public class Joueur {
      */
     public Joueur(Map map) throws SlickException {
 
-        sonSaut = new Music("/ressource/son/bond.wav");
-        sonPiece = new Music("/ressource/son/piece.wav");
+        sonSaut = new Sound("/ressource/son/bruitages/bond.wav");
+        sonPiece = new Sound("/ressource/son/bruitages/piece.wav");
 
         // Init de la map dans le joueur
         this.map = map;

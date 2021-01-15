@@ -41,6 +41,9 @@ public class MapGameState extends BasicGameState {
     // Affichage
     Interface affichage = new Interface();
 
+    /* Musique de fond */
+    private Music backgroundMusic;
+
     /**
      * Créer un nouveau jeu
      */
@@ -48,11 +51,14 @@ public class MapGameState extends BasicGameState {
         super();
     }
 
-
+    public void enter(GameContainer gameContainer, StateBasedGame game) throws SlickException {
+        backgroundMusic.play(1, 0.10f);
+    }
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame game) throws SlickException {
 
+        backgroundMusic = new Music("ressource/son/musiques/musique1.wav");
 
         this.container = gameContainer;
         container.setShowFPS(false);

@@ -133,12 +133,15 @@ public class Map {
      */
     private static void correctifMap(String cheminMap) {
 
+        boolean objectGroup = false; // Indique si le curseur est dans une balise object group
+
         ArrayList<String> newMap = new ArrayList<>();  // Map réécrite
 
         BufferedReader lecteurAvecBuffer = null;
         PrintWriter ecrivain;
 
         String ligne;
+        String ligneSecondaire;
 
         try {
             lecteurAvecBuffer = new BufferedReader(new FileReader(cheminMap));
@@ -168,6 +171,33 @@ public class Map {
                         ligne = ligne.concat(">");                           // Fermeture de la balise
                     }
                     System.out.println(ligne);
+                }
+
+                // Indicateur dans un object groupe
+                if (ligne.contains("<objectgroup")) {
+                    objectGroup = true;
+                } else if (ligne.contains("</objectgroup>")) {
+                    objectGroup = false;
+                }
+
+                if (objectGroup && ligne.contains(".")) {
+
+                    System.out.println("LIGNE AVANT MODIFIER : " + ligne);
+
+                    String[] ligneCouper = ligne.split("\\.");
+
+                    if (ligneCouper.length == 2) {
+                        // Cas ou il faut gere que x
+                        ligne = ligneCouper[0];
+                        ligneCouper = ligneCouper[1].split("\"");
+                        for (int i = 1; i < ligneCouper.length; i++) {
+                            ligne += "\"";
+                            ligne += ligneCouper[i];
+                        }
+                    } else {
+                        // Cas ou il faut gerer x et y
+                    }
+                    System.out.println("LIGNE MODIFIER : " + ligne);
                 }
 
                 newMap.add(ligne); // Ajout de la ligne a la réécriture de la map

@@ -141,7 +141,7 @@ public class Map {
         PrintWriter ecrivain;
 
         String ligne;
-        String ligneSecondaire;
+        String listeLigneSecondaire[];
 
         try {
             lecteurAvecBuffer = new BufferedReader(new FileReader(cheminMap));
@@ -173,6 +173,7 @@ public class Map {
                     System.out.println(ligne);
                 }
 
+                // Correction des positions dans les groupes d'objets
                 // Indicateur dans un object groupe
                 if (ligne.contains("<objectgroup")) {
                     objectGroup = true;
@@ -181,23 +182,7 @@ public class Map {
                 }
 
                 if (objectGroup && ligne.contains(".")) {
-
-                    System.out.println("LIGNE AVANT MODIFIER : " + ligne);
-
-                    String[] ligneCouper = ligne.split("\\.");
-
-                    if (ligneCouper.length == 2) {
-                        // Cas ou il faut gere que x
-                        ligne = ligneCouper[0];
-                        ligneCouper = ligneCouper[1].split("\"");
-                        for (int i = 1; i < ligneCouper.length; i++) {
-                            ligne += "\"";
-                            ligne += ligneCouper[i];
-                        }
-                    } else {
-                        // Cas ou il faut gerer x et y
-                    }
-                    System.out.println("LIGNE MODIFIER : " + ligne);
+                    ligne = correctifInt(ligne);
                 }
 
                 newMap.add(ligne); // Ajout de la ligne a la réécriture de la map
@@ -223,6 +208,39 @@ public class Map {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Transforme tout les float des position dans les objectGroup en int
+     * @param ligne ligne qui contient les floats
+     * @return la ligne sans les floats
+     */
+    private static String correctifInt(String ligne) {
+
+        String[] listeLigneSecondaire;
+        String[] ligneCouper;
+
+            ligneCouper = ligne.split("\\.");
+
+            // Cas ou il faut gere que x ou y
+            ligne = ligneCouper[0];
+            listeLigneSecondaire = ligneCouper[1].split("\"");
+            for (int i = 1; i < listeLigneSecondaire.length; i++) {
+                ligne += "\"";
+                ligne += listeLigneSecondaire[i];
+            }
+
+            // Cas ou il faut gerer x et y
+            if (ligneCouper.length != 2) {
+
+                listeLigneSecondaire = ligneCouper[2].split("\"");
+                for (int i = 1; i < listeLigneSecondaire.length; i++) {
+                    ligne += "\"";
+                    ligne += listeLigneSecondaire[i];
+                }
+            }
+
+        return ligne;
     }
 
     public int getWidth() {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="384" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="111">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="384" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="123">
  <tileset firstgid="1" source="decor.tsx"/>
  <tileset firstgid="13" source="logique.tsx"/>
  <tileset firstgid="17" source="chateau.tsx"/>
  <tileset firstgid="33" source="piege.tsx"/>
  <layer id="1" name="ciel" width="384" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2bUWvDMAyEs4UN9tD//3dX2EsIWSLbku5k3wcHbWnqkywppUn3bdt2gD7e+gStzaDV45diJYSFpzqKmlNfb303HjPipeXYjNncE7+Utz/VJYSFpzqyzin2mdlyrNdsRsypKrNxxKf3ubNKzlokhAWvHtD3WY6cRK3pPSOZ6oXJi9feMHD2+d9rAscsPTC7vOZv7+eoPvxz67WnV3uD5Ojh5+L1/fBcYEH3DLoHq8hr/q46xxl/n4zcCxT76bGXZ4bYZoSp/zx6FPXbcI/32c5VzPGsdt7L5Lzm8fmVp2ivqDxUhKn/GHvU6qnHe+XrzFX2r7p69zaD81pWT1k+M3NRlcyalGK06txdoQ579zaD81o98d197l0co3kVf2TW5CxaYe6gZclxxTrMqp0srtaz+Hry6RXfSP6Qec0C3Q8s/dKi1rkTEQPqXhPWHI/GnZWfrPtzo7D6eXpvJuj1mWHoCa9+ybrGHBVDi7eoe00Y9hyR+7v3sf133OI/CosXUQeP3mHpg6rXmJm8RXiofk5B/Hd8NH8RINcWMTD0jDS3VAv5+eslOhbBBbq2JUnyVy+svlhgicPLA7pOJUny1+tCnrT6EZz8AsEkeMIAYAAA
+   H4sIAAAAAAAACu2bUWvDMAyEs4UN9tD//3dX2EsIWSLbku5k3wcHbWnqkywppUn3bdt2gD7e+gStzaDV45diJYSFpzqKmlNfb303HjPipeXYjNncE7+Utz/VJYSFpzqyzin2mdlyrNdsRsypKrNxxKf3ubNKzlokhAWvHtD3WY6cRK3pPSOZ6oXJi9feMHD2+d9rXuuIdmbpgdnlNX97P0f14Z9brz292hskRw8/F6/vh+cCC7pn0D1YRV7zd9U5zvj7ZOReoNhPj708M8Q2I0z959GjqN+Ge7zPdq5ijme1814m5zWPz688RXtF5aEiTP3H2KNWTz3eK19nrrJ/1dW7txmc17J6yvKZmYuqZNakFKNV5+4Kddi7txmc1+qJ7+5z7+IYzav4I7MmZ9EKcwctS44r1mFW7WRxtZ7F15NPr/hG8ofMaxbofmDplxa1zp2IGFD3mrDmeDTurPxk3Z8bhdXP03szQa/PDENPePVL1jXmqBhavEXda8Kw54jc372P7b/jFv9RWLyIOnj0DksfVL3GzOQtwkP1cwriv+Oj+YsAubaIgaFnpLmlWsjPXy/RsQgu0LUtSZK/emH1xQJLHF4e0HUqSZK/XhfypNWP4OQXBJxubwBgAAA=
   </data>
  </layer>
  <layer id="5" name="sol3" width="384" height="16">
@@ -119,9 +119,21 @@
   <object id="105" x="7998" y="396" width="32" height="32"/>
   <object id="106" x="8374" y="427" width="32" height="32"/>
   <object id="107" x="8200" y="406" width="32" height="32"/>
-  <object id="108" x="8682" y="278" width="32" height="32"/>
-  <object id="109" x="8685" y="355" width="32" height="32"/>
-  <object id="110" x="8687" y="418" width="32" height="32"/>
+  <object id="108" x="8686" y="275" width="32" height="32"/>
+  <object id="109" x="8685" y="339" width="32" height="32"/>
+  <object id="110" x="8687" y="395" width="32" height="32"/>
+  <object id="111" x="8689" y="446" width="32" height="32"/>
+  <object id="112" x="8866" y="204" width="32" height="32"/>
+  <object id="113" x="9040" y="117" width="32" height="32"/>
+  <object id="114" x="9425" y="214" width="32" height="32"/>
+  <object id="115" x="9268" y="113" width="32" height="32"/>
+  <object id="116" x="9586" y="120" width="32" height="32"/>
+  <object id="117" x="9777" y="50" width="32" height="32"/>
+  <object id="118" x="9936" y="146" width="32" height="32"/>
+  <object id="119" x="10000" y="240" width="32" height="32"/>
+  <object id="120" x="10164" y="246" width="32" height="32"/>
+  <object id="121" x="10353" y="242" width="32" height="32"/>
+  <object id="122" x="10545" y="236" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="9" name="piege" visible="0" height="1" width="1" >
   <object id="26" x="4380" y="480" width="548" height="32"/>

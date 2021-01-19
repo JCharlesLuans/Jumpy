@@ -2,6 +2,7 @@ TODO List
 -
 
 - Piege
+- Spawn mob  
 - Bonus
 - Boss
 - Menu

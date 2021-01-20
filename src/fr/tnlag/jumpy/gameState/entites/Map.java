@@ -26,12 +26,14 @@ public class Map {
     public static final int TAILLE_TUILLE = 32;
 
     public static final int ID_GROUPE_PIECE = 0;
+    public static final int ID_GROUPE_PIEGE = 1;
 
     private TiledMap tiledMap;
 
-    private Piece[] listePiece; // Piece présente sur la map
-
-    private MobHostile[] listeMobs; //
+    /* Objets présent sur la map */
+    private Piece[] listePiece;     // Piece présente sur la map
+    private Piege[] listePiege;
+    private MobHostile[] listeMobs; // Mob présent sur la map
 
     /**
      * Initialisation de la map
@@ -41,14 +43,14 @@ public class Map {
         correctifMap("ressource/map/niveau_1.tmx");
         this.tiledMap = new TiledMap("ressource/map/niveau_1.tmx");
 
-        int nbPiece = tiledMap.getObjectCount(ID_GROUPE_PIECE); // Nombre de pièce dans le groupe
-
-        System.out.println("Nb piece = " + nbPiece);
-
-
+        int nbPiece = tiledMap.getObjectCount(ID_GROUPE_PIECE); // Nombre de pièce sur la map
+        int nbPiege = tiledMap.getObjectCount(ID_GROUPE_PIEGE); // Nombre de piege sur la map
 
         int x = 0,
             y = 0;
+
+        int width = 0,
+            height = 0;
 
         /* Recherche des piece sur la map et génération des pièces */
         listePiece = new Piece[nbPiece];
@@ -59,6 +61,18 @@ public class Map {
 
             listePiece[idPiece] = new Piece(x, y);
         }
+
+        /* Recherche des pièges sur la map et génération des pièges */
+        listePiege = new Piege[nbPiege];
+        for (int idPiege = 0; idPiege < nbPiege; idPiege++) {
+            x = tiledMap.getObjectX(ID_GROUPE_PIEGE, idPiege);
+            y = tiledMap.getObjectY(ID_GROUPE_PIEGE, idPiege);
+            width = tiledMap.getObjectWidth(ID_GROUPE_PIEGE, idPiege);
+            height = tiledMap.getObjectHeight(ID_GROUPE_PIEGE, idPiege);
+
+            listePiege[idPiege] = new Piege(x, y, width, height);
+        }
+
 
         // Génération des mobs
         listeMobs = new MobHostile[NOMBRE_MOBS];
@@ -119,6 +133,13 @@ public class Map {
     }
 
     /**
+     * @return touts les piege sur la map active
+     */
+    public Piege[] getPieges() {
+        return listePiege;
+    }
+
+    /**
      * @return touts les mobs qui sont sur la map
      */
     public MobHostile[] getMobs() {
@@ -149,29 +170,7 @@ public class Map {
             // Parcours du fichier
             while ((ligne = lecteurAvecBuffer.readLine()) != null) {
 
-                // Si la ligne est la balise "objectgroup", et qu' elle ne contient
-                // pas deja un attribut width, on la modifie
-                if (ligne.contains("<objectgroup") && !ligne.contains("width")) {
-
-                    // DEBUG
-                    System.out.println(ligne);
-
-                    // Enlever fin de la balise pour ajout des attributs
-                    ligne = ligne.replace('>', ' ');
-
-                    // La balise était orpheline
-                    if (ligne.contains("/")) {
-                        ligne = ligne.replace('/', ' ');      // Réouverture de la balise orpheline
-                        ligne = ligne.concat("height=\"1\" width=\"1\" ");  // Ajout des attributs
-                        ligne = ligne.concat("/>");                          // Fermeture de la balise orpheline
-
-                    } else {
-                        // La balise n' est pas orpheline
-                        ligne = ligne.concat("height=\"1\" width=\"1\" ");  // Ajout des attributs
-                        ligne = ligne.concat(">");                           // Fermeture de la balise
-                    }
-                    System.out.println(ligne);
-                }
+                ligne = correctifBaliseGroupObject(ligne);
 
                 // Correction des positions dans les groupes d'objets
                 // Indicateur dans un object groupe
@@ -182,7 +181,7 @@ public class Map {
                 }
 
                 if (objectGroup && ligne.contains(".")) {
-                    ligne = correctifInt(ligne);
+                    ligne = correctifBaliseObject(ligne);
                 }
 
                 newMap.add(ligne); // Ajout de la ligne a la réécriture de la map
@@ -215,7 +214,7 @@ public class Map {
      * @param ligne ligne qui contient les floats
      * @return la ligne sans les floats
      */
-    private static String correctifInt(String ligne) {
+    private static String correctifBaliseObject(String ligne) {
 
         String[] listeLigneSecondaire;
         String[] ligneCouper;
@@ -240,6 +239,38 @@ public class Map {
                 }
             }
 
+        return ligne;
+    }
+
+
+    /**
+     * Corrige les balises objectGroup en leurs ajoutant une height et une width
+     * @param ligne ligne a corriger
+     * @return la ligne corriger
+     */
+    private static String correctifBaliseGroupObject(String ligne) {
+        // Si la ligne est la balise "objectgroup", et qu' elle ne contient
+        // pas deja un attribut width, on la modifie
+        if (ligne.contains("<objectgroup") && !ligne.contains("width")) {
+
+            // DEBUG
+            System.out.println(ligne);
+
+            // Enlever fin de la balise pour ajout des attributs
+            ligne = ligne.replace('>', ' ');
+
+            // La balise était orpheline
+            if (ligne.contains("/")) {
+                ligne = ligne.replace('/', ' ');      // Réouverture de la balise orpheline
+                ligne = ligne.concat("height=\"1\" width=\"1\" ");  // Ajout des attributs
+                ligne = ligne.concat("/>");                          // Fermeture de la balise orpheline
+
+            } else {
+                // La balise n' est pas orpheline
+                ligne = ligne.concat("height=\"1\" width=\"1\" ");  // Ajout des attributs
+                ligne = ligne.concat(">");                           // Fermeture de la balise
+            }
+        }
         return ligne;
     }
 

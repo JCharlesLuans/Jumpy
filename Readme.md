@@ -4,8 +4,10 @@ TODO List
 - Piege
 - Spawn mob  
 - Bonus
+- Revision des contrôles (courbe de baisier pour gravity + touche qui permet de dessendre d'un etage)
 - Boss
 - Menu
+- Changer les touches  
 - Serveur / Client
 - Sauvegarde
 

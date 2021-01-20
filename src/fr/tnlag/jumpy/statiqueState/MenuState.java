@@ -99,7 +99,11 @@ public class MenuState extends BasicGameState {
         }
 
         if (key == Input.KEY_ENTER) {
-            validerChoix();
+            try {
+                validerChoix();
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -112,7 +116,11 @@ public class MenuState extends BasicGameState {
     }
 
     public void controllerButtonPressed(int controller, int button) {
-        validerChoix();
+        try {
+            validerChoix();
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -174,10 +182,11 @@ public class MenuState extends BasicGameState {
     /**
      * Execute l'action en fonction du choix
      */
-    private void validerChoix() {
+    private void validerChoix() throws SlickException{
         sonClick.play();
         switch (choix) {
             case 1:
+                stateBasedGame.init(gameContainer);
                 stateBasedGame.enterState(MapGameState.ID);
                 break;
             case 4 :

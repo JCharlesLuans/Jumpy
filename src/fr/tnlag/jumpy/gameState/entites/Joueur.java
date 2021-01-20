@@ -99,17 +99,6 @@ public class Joueur {
         /* Initialisation du joueur qui se prend des dégas */
         takingDegas = false;
     }
-
-    public void collisionPiece(Piece piece) {
-        boolean pieceIn = x <= piece.getX() && piece.getX() <= (x+32f) && y <= piece.getY() && piece.getY() <= (y +32);
-        boolean joueurIn = piece.getX() <= x && x <= (piece.getX()+32f) && piece.getY() <= y && y <= (piece.getY()+32f);
-
-        if (piece.isActive() && (pieceIn || joueurIn)) {
-            piece.setActive(false);
-            score += 1;
-            sonPiece.play();
-        }
-    }
     
     /**
      * Enlève une vie au joueur si il entre en collision avec un mob présent sur la map
@@ -137,6 +126,19 @@ public class Joueur {
             }
         }
 
+    }
+
+    /**
+     * Enleve une vie au joueur si il entre en colision avec un pige
+     */
+    private void collisionPiege() {
+
+        for (int i = 0; i < map.getPieges().length; i++) {
+            if(hitBoxBas.isCollision(map.getPieges()[i].getHitBox())) {
+                System.out.println("Taking dega");
+                vie--;
+            }
+        }
     }
 
     /**
@@ -258,8 +260,6 @@ public class Joueur {
         g.drawAnimation(listeAnimation[mouvement],  x, y);
 
         // Affichage des hit box
-        hitBoxHaut.render(g);
-        //hitBoxBas.render(g);
     }
 
     /**
@@ -270,7 +270,6 @@ public class Joueur {
             this.jumping = true;
             positionMaxSaut = y - DISTANCE_SAUT;
             sonSaut.play();
-
         }
     }
 
@@ -303,6 +302,7 @@ public class Joueur {
 
         collisionMob();
         collisionPiece();
+        collisionPiege();
     }
 
 

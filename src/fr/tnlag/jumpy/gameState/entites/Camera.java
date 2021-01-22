@@ -58,6 +58,11 @@ public class Camera {
 
         }
 
+        if (x == Joueur.X_DEPART && y == Joueur.Y_DEPART) {
+            this.x = container.getWidth() / 2f;
+            this.y = 0;
+        }
+
     }
 
     /**

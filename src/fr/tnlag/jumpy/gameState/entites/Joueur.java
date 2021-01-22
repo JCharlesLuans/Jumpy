@@ -24,7 +24,10 @@ public class Joueur {
     public static final int DROITE = 1;
     public static final int GAUCHE = -1;
 
-    public final float DISTANCE_SAUT = 128f;
+    public static final float DISTANCE_SAUT = 128f;
+
+    public static final float X_DEPART = 16,
+                              Y_DEPART = 430;
 
     /* -------------------------------------------------------------------------------------------------- */
     /* Champs de la classe */
@@ -73,8 +76,8 @@ public class Joueur {
         this.map = map;
 
         /* Position par défaut du personnage joueur */
-        x = 16;
-        y = 448;
+        x = X_DEPART;
+        y = Y_DEPART;
         positionMaxSaut = 0;
 
         /* Direction par défaut du personnage joueur */
@@ -135,6 +138,8 @@ public class Joueur {
 
         for (int i = 0; i < map.getPieges().length; i++) {
             if(hitBoxBas.isCollision(map.getPieges()[i].getHitBox())) {
+                x = X_DEPART;
+                y = Y_DEPART;
                 System.out.println("Taking dega");
                 vie--;
             }
@@ -260,6 +265,7 @@ public class Joueur {
         g.drawAnimation(listeAnimation[mouvement],  x, y);
 
         // Affichage des hit box
+        hitBoxBas.render(g);
     }
 
     /**

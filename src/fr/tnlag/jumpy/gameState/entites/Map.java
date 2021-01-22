@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class Map {
 
-    private static final int NOMBRE_MOBS = 1 ; // Nombre de mob par défaut
+    private static final int NOMBRE_MOBS = 0 ; // Nombre de mob par défaut
 
     public static final int TAILLE_TUILLE = 32;
 
@@ -100,6 +100,11 @@ public class Map {
         for (int i = 0; i < listeMobs.length; i++) {
             listeMobs[i].render(graphics);
         }
+
+        // Affichage des pieges
+        for (int i = 0; i < listeMobs.length; i++) {
+            listePiege[i].render(graphics);
+        }
     }
 
     /**
@@ -109,10 +114,10 @@ public class Map {
      * @return
      */
     public boolean isCollision(float x, float y) {
-        Image tile = tiledMap.getTileImage((int) x / this.tiledMap.getTileWidth(),
-                (int) (y + TAILLE_TUILLE) / this.tiledMap.getTileHeight(),
-                this.tiledMap.getLayerIndex("logic"));
-
+        Image tile = tiledMap.getTileImage((int) (x / tiledMap.getTileWidth()),
+                (int) (y / tiledMap.getTileHeight()) +1, this.tiledMap.getLayerIndex("logic"));
+        System.out.println("X = " + x);
+        System.out.println("Y = " + y);
         return tile != null;
     }
 

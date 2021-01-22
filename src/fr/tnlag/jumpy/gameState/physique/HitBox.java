@@ -42,10 +42,8 @@ public class HitBox {
                             && y <= hitBox.getY() && hitBox.getY() <= (y + height);
 
 
-        boolean thisIn = hitBox.getX() <= x && x <= (hitBox.getX()+32f)
-                            && hitBox.getY() <= y && y <= (hitBox.getY()+32f);
-
-        // TODO comprendre pourquoi elle renvoie toujour true
+        boolean thisIn = hitBox.getX() <= x && x <= (hitBox.getX()+ hitBox.getWidth())
+                            && hitBox.getY() <= y && y <= (hitBox.getY()+ hitBox.getHeight());
 
         return (thisIn || hitBoxIn);
     }
@@ -66,4 +64,8 @@ public class HitBox {
     public float getY() {
         return y;
     }
+
+    public float getWidth() {return width;}
+
+    public float getHeight() {return height;}
 }

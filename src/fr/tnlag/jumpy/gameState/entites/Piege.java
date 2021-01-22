@@ -5,6 +5,8 @@
 package fr.tnlag.jumpy.gameState.entites;
 
 import fr.tnlag.jumpy.gameState.physique.HitBox;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.svg.Gradient;
 
 /**
  * Piege existant sur une carte
@@ -31,7 +33,6 @@ public class Piege {
         this.y = y;
         this.width = width;
         this.height = height;
-
         hitBox = new HitBox(x, y, width, height);
     }
 
@@ -40,5 +41,9 @@ public class Piege {
      */
     public HitBox getHitBox() {
         return hitBox;
+    }
+
+    public void render(Graphics g) {
+        hitBox.render(g);
     }
 }

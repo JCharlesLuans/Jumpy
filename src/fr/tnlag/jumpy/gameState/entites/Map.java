@@ -5,6 +5,7 @@
 
 package fr.tnlag.jumpy.gameState.entites;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -114,11 +115,21 @@ public class Map {
      * @return
      */
     public boolean isCollision(float x, float y) {
+
+        boolean collision;
+
+        /* Collision avec la tuiles */
         Image tile = tiledMap.getTileImage((int) (x / tiledMap.getTileWidth()),
                 (int) (y / tiledMap.getTileHeight()) +1, this.tiledMap.getLayerIndex("logic"));
-        System.out.println("X = " + x);
-        System.out.println("Y = " + y);
-        return tile != null;
+
+        collision =  tile != null;
+
+        if (collision) {
+            Color color = tile.getColor((int) x % tiledMap.getTileWidth(), (int) y % tiledMap.getTileWidth());
+            collision = color.getAlpha() > 0;
+        }
+
+        return  collision;
     }
 
     public void update(int delta) {

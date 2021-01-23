@@ -27,7 +27,7 @@ public class Joueur {
     public static final float DISTANCE_SAUT = 128f;
 
     public static final float X_DEPART = 16,
-                              Y_DEPART = 430;
+                              Y_DEPART = 400;
 
     /* -------------------------------------------------------------------------------------------------- */
     /* Champs de la classe */
